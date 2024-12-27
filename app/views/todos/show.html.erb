@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>タイトル:</strong>
+  <%= @todo.title %>
+</p>
+
+<p>
+  <strong>説明:</strong>
+  <%= @todo.description %>
+</p>
+
+<p>
+  <strong>開始日時:</strong>
+  <%= @todo.start_time.strftime('%Y/%m/%d %H:%M') %>
+</p>
+
+<p>
+  <strong>終了日時:</strong>
+  <%= @todo.end_time.strftime('%Y/%m/%d %H:%M') %>
+</p>
+
+<%= link_to '編集', edit_todo_path(@todo) %> |
+<%= link_to '戻る', todos_path %>
