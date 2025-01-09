@@ -22,12 +22,14 @@ class TodosController < ApplicationController
   # POST /todos or /todos.json
   def create
     @todo = Todo.new(todo_params)
-
+  
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: "Todoが作成されました。" }
+        flash[:notice] = "Todoが作成されました。"
+        format.html { redirect_to @todo }
         format.json { render :show, status: :created, location: @todo }
       else
+        flash[:alert] = "Todoの作成に失敗しました。"
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
@@ -38,9 +40,11 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: "Todoが更新されました。" }
+        flash[:notice] = "Todoが更新されました。"
+        format.html { redirect_to @todo }
         format.json { render :show, status: :ok, location: @todo }
       else
+        flash[:alert] = "Todoの更新に失敗しました。"
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
@@ -49,10 +53,14 @@ class TodosController < ApplicationController
 
   # DELETE /todos/1 or /todos/1.json
   def destroy
-    @todo.destroy
-
+    if @todo.destroy
+      flash[:notice] = "Todoが削除されました。"
+    else
+      flash[:alert] = "Todoの削除に失敗しました。"
+    end
+  
     respond_to do |format|
-      format.html { redirect_to todos_path, status: :see_other, notice: "Todoが削除されました。" }
+      format.html { redirect_to todos_path, status: :see_other }
       format.json { head :no_content }
     end
   end
