@@ -1,0 +1,58 @@
+@import "bootstrap";
+
+.datetime-select-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.datetime-select-container select {
+  text-align: center;
+}
+
+.datetime-select-container .datetime-separator {
+  padding: 0 5px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* テーブルをレスポンシブ対応 */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* iOS向けのスムーズスクロール */
+}
+
+/* ボタンの間隔を調整 */
+.btn {
+  margin-bottom: 5px;
+}
+
+/* 小さい画面でのテーブルセルの文字サイズを調整 */
+@media (max-width: 576px) {
+  .table th,
+  .table td {
+    font-size: 0.9rem;
+    white-space: nowrap; /* テキストの折り返しを防ぐ */
+  }
+
+  /* スマホの場合にdatetime_selectの横幅を強制的に元に戻す */
+  .col-sm-4 {
+    width: 100% !important; /* スマホでのカラム幅を100%に */
+    padding: 0 !important; /* 余白をリセット */
+  }
+
+  /* d-flexとalign-items-centerの影響を解除 */
+  .d-flex {
+    display: block !important; /* d-flexを無効にしてブロック表示に */
+  }
+
+  /* form-controlの幅を100%にする */
+  .form-control {
+    width: 100% !important; /* スマホでフォーム幅を100%に */
+  }
+
+  /* datetime_select専用のクラスに適用する場合 */
+  .form-control.datetime-select {
+    width: 100% !important; /* datetime_selectの幅を100%に */
+  }
+}

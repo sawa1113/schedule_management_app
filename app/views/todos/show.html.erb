@@ -1,24 +1,31 @@
-<p id="notice"><%= notice %></p>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">タスク詳細</h1>
 
-<p>
-  <strong>タイトル:</strong>
-  <%= @todo.title %>
-</p>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>タイトル</th>
+          <td><%= @todo.title %></td>
+        </tr>
+        <tr>
+          <th>説明</th>
+          <td><%= @todo.description %></td>
+        </tr>
+        <tr>
+          <th>開始日時</th>
+          <td><%= @todo.start_time.strftime('%Y/%m/%d %H:%M') %></td>
+        </tr>
+        <tr>
+          <th>終了日時</th>
+          <td><%= @todo.end_time.strftime('%Y/%m/%d %H:%M') %></td>
+        </tr>
+      </tbody>
+    </table>
 
-<p>
-  <strong>説明:</strong>
-  <%= @todo.description %>
-</p>
+    <br>
 
-<p>
-  <strong>開始日時:</strong>
-  <%= @todo.start_time.strftime('%Y/%m/%d %H:%M') %>
-</p>
-
-<p>
-  <strong>終了日時:</strong>
-  <%= @todo.end_time.strftime('%Y/%m/%d %H:%M') %>
-</p>
-
-<%= link_to '編集', edit_todo_path(@todo) %> |
-<%= link_to '戻る', todos_path %>
+    <%= link_to '編集', edit_todo_path(@todo), class: 'btn btn-warning' %>
+    <%= link_to '戻る', todos_path, class: 'btn btn-secondary ms-3' %>
+  </div>
+</body>
